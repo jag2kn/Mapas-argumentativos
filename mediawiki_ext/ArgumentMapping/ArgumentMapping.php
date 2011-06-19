@@ -29,7 +29,7 @@ function efArgumentMappingRender( $input, $args, $parser/*, $frame*/ ) {
 
         // Nothing exciting here, just escape the user-provided
         // input and throw it back out again
-        return "<pre>".htmlspecialchars( $input )."</pre>";
+        return "<pre>".htmlspecialchars( $input )."</pre><br/>*Nota: Toca mejorar esta forma de ver la información";
 }
 
 function efPreprocesarEditor($ep){
@@ -48,13 +48,14 @@ function efPreprocesarEditor($ep){
 	preg_match_all("/(<([\w]+)[^>]*>)(.*?)(<\/\\2>)/", $html, $matches, PREG_SET_ORDER);
 	//echo "---------------------------------------\n\n";
 	
-
-	if (isset($wgRequest->data["earmap"])){
-		$anterior=$matches[$wgRequest->data["id"]][0];
-		$nuevo="<armap>".utf8_decode($wgRequest->data["earmap"])."</armap>";
-		$t.= "<pre>\nOriginal: \n\n".$html."\n--------------------------";
-		$t.= "\nAnterior:\n\n".$anterior."\n--------------------------";
-		$t.= "\nNuevo:\n\n".$nuevo."\n--------------------------</pre>";
+	if (strcmp($wgRequest->getVal("earmap"), "")!=0){
+	//if (isset($wgRequest->data["earmap"])){
+		$anterior=$matches[$wgRequest->getVal("id")][0];
+		$nuevo="<armap>".utf8_decode($wgRequest->getVal("earmap"))."</armap>";
+		//$t.= "<pre>\nOriginal: \n\n".$html."\n--------------------------";
+		//$t.= "\nAnterior:\n\n".$anterior."\n--------------------------";
+		//$t.= "\nNuevo:\n\n".$nuevo."\n--------------------------</pre>";
+		$t.="<b>Por favor guarde la pagina</b>";
 		$ep->editFormPageTop.=$t;
 		
 		$html = str_replace($anterior, $nuevo, $html);
@@ -109,22 +110,23 @@ function efArgumentMappingEditor($ep){
 
 	$t  = "";
 
-	if (isset($wgRequest->data["armap"])){
-		if (!is_null($wgRequest->data["armap"])){
+
+	if (strcmp($wgRequest->getVal("armap"), "")!=0){
+		
 			$html = $wgArticle->getContent();
 			$html=str_replace("\n", " ", $html);
 			
 			preg_match_all("/(<([\w]+)[^>]*>)(.*?)(<\/\\2>)/", $html, $matches, PREG_SET_ORDER);
-			$val = $matches[$wgRequest->data["armap"]];
+			$val = $matches[$wgRequest->getVal("armap")];
 			$t.="<iframe style='width: 100%; height: 1000px;' ".
 				"src='".$wgScriptPath."/extensions/".$nombreExtension."/editor.php?".
 				"s=".codificar($val[0])."&".
-				"d=".base64_encode($ep->mTitle->escapeLocalURL("action=edit&id=".$wgRequest->data["armap"]."&earmap"))."'>".
+				"d=".base64_encode($ep->mTitle->escapeLocalURL("action=edit&id=".$wgRequest->getVal("armap")."&earmap"))."'>".
 				"</iframe>";
 			$wgOut->addHTML($t);
 			return false;
-		}
 	}
+	
 	
 	return true;
 }

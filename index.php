@@ -73,12 +73,12 @@
 				'<div id="caja_'+contador+'" class="'+tipo+' box ui-widget-content">'+
 					'<div class="ui-widget-header ui-corner-all ui-helper-clearfix ui-dialog-titlebar t">'+
 						'<div id="ttitulo_'+contador+'" class="ttitulo">Titulo '+contador+'</div>'+
-						'<div id="propiedades_'+contador+'" class="botonPropiedades ui-state-default ui-corner-all"><span class="ui-icon ui-icon-gear"></span></div>'+
-						'<div id="toggle_'+contador+'" class="botonPropiedades ui-state-default ui-corner-all"><span class="ui-icon ui-icon-arrowthick-1-n"></span></div>'+
+						'<div id="propiedades_'+contador+'" class="botonPropiedades ui-state-default ui-corner-all"><span class="ui-icon ui-icon-pencil"></span></div>'+
+						'<div id="toggle_'+contador+'" class="botonPropiedades ui-state-default ui-corner-all"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span></div>'+
 						
-						'<div id="ayuda_'+contador+'" class="botonPropiedades ui-state-default ui-corner-all"><span class="ui-icon ui-icon-info"></span></div>'+
-						'<div id="mas_'+contador+'" class="botonPropiedades ui-state-default ui-corner-all"><span class="ui-icon ui-icon-plus"></span></div>'+
-						'<div id="menos_'+contador+'" class="botonPropiedades ui-state-default ui-corner-all"><span class="ui-icon ui-icon-minus"></span></div>'+
+						'<div id="ayuda_'+contador+'" class="botonAyuda ui-state-default ui-corner-all"><span class="ui-icon ui-icon-info"></span></div>'+
+						'<div id="razon_'+contador+'" class="botonRazon ui-state-default ui-corner-all"><span class="ui-icon ui-icon-circle-check"></span></div>'+
+						'<div id="objecion_'+contador+'" class="botonObjecion ui-state-default ui-corner-all"><span class="ui-icon ui-icon-circle-close"></span></div>'+
 						
 					'</div>'+
 					'<div class="ui-widget-content">'+
@@ -141,16 +141,22 @@
 				id = $(this).attr("id");
 				nombres=id.split("_");
 				actual=nombres[1];
-				$("#caja_"+actual).css("height", "22px");
+				
+				alto=parseInt($("#caja_"+actual).css("height"));
+				if (alto==22){
+					$("#caja_"+actual).css("height", "100px");
+				}else{
+					$("#caja_"+actual).css("height", "22px");
+				}
 			});
-			$('#mas_'+contador).click(function(){
+			$('#razon_'+contador).click(function(){
 				id = $(this).attr("id");
 				nombres=id.split("_");
 				padre = nombres[1];
 				agregarCaja("razon");
 				padre=-1;
 			});
-			$('#menos_'+contador).click(function(){
+			$('#objecion_'+contador).click(function(){
 				id = $(this).attr("id");
 				nombres=id.split("_");
 				padre = nombres[1];
@@ -227,6 +233,12 @@
 		#set div.t .ttitulo { float: left; background: none; border: 0px; }
 		.box{ width:300px; position: absolute; overflow: hidden;}
 		.botonPropiedades{overflow:hidden;float:right;}
+		.botonRazon{overflow:hidden;float:right;border:1.5px solid green !important;}
+		.botonObjecion{overflow:hidden;float:right;border:1.5px solid red !important;}
+		.botonayuda{overflow:hidden;float:right;border:1.5px solid yellow !important;}
+		
+		
+		
 		.contenido{height: 100%; width: 100%; background: none; border: 0px;}
 		p { clear:both; margin:0; padding:1em 0; }
 		#switcher{float:right;}

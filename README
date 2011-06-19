@@ -1,0 +1,49 @@
+https://github.com/jag2kn/Mapas-argumentativos
+
+
+
+Tratando de encontrar una solución para el manejo de la información se planteo la
+posibilidad de usar mapas argumentativos que ayudaran a trabajar las propuestas
+de redpatodos.co en la #leylleras
+
+
+Para esto Offray ofreció una serie de links con esta información [1] entre ellos se
+recomendó trabajar con Compendium [2], es un aplicativo standalone y multiplataforma.
+
+El principal problema que le veo a este aplicativo es que sea standalone, ya que estos
+mapas argumentativos van a ser una Construcción Colectiva se facilitaría mucho el
+trabajo si esto fuera un aplicativo en linea.
+
+Buscando mas información en internet basado en esto, encontré este software [3] y este
+vídeo [4] me pareció muy buena forma de manejar la información, pero tiene el mismo
+problema de compendium, es standalone y ademas es una para windows :S
+
+
+Entonces con base a un par de librerías que estoy trabajando en mi empresa + jquery +
+jquery-svg trabaje una primera versión de un aplicativo en linea para esto, y pues
+este es el resultado:
+
+http://v.joorge.com/mapaArgumentativo/
+
+
+En este momento esta en una versión como alpha, pero vamos avanzando, por favor
+envíen sugerencias, comentarios, propuestas para seguirlo mejorando.
+
+En este momento en cada uno de los cuadros, se tienen las opciones:
+Agregar objeción ,  Agregar razón, Agregar ayuda, Colapsar, Editar
+
+Los colores representan:
+Rojo: Objeción
+Verde: Razón
+Amarillo: Ayuda
+Azul: Premisa
+
+
+Y quien quiera ayudar a trabajarlo no mas es que avise, esta en javascript y falta la
+integración con alguna plataforma para almacenar y recuperar la información.
+
+
+[1] http://holonica.net/home/infoviz
+[2] http://en.wikipedia.org/wiki/Compendium_%28software%29
+[3] http://argumentative.sourceforge.net/
+[4] http://argumentative.sourceforge.net/arg_resource/CatsAndDogs.htm

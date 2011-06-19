@@ -148,6 +148,7 @@
 				}else{
 					$("#caja_"+actual).css("height", "22px");
 				}
+				calcularLineas();
 			});
 			$('#razon_'+contador).click(function(){
 				id = $(this).attr("id");

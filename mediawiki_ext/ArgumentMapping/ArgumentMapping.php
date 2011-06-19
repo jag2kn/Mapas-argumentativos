@@ -55,7 +55,7 @@ function efPreprocesarEditor($ep){
 		//$t.= "<pre>\nOriginal: \n\n".$html."\n--------------------------";
 		//$t.= "\nAnterior:\n\n".$anterior."\n--------------------------";
 		//$t.= "\nNuevo:\n\n".$nuevo."\n--------------------------</pre>";
-		$t.="<b>Por favor guarde la pagina</b>";
+		$t.="<b>Por favor guarde la pagina</b><br/>";
 		$ep->editFormPageTop.=$t;
 		
 		$html = str_replace($anterior, $nuevo, $html);

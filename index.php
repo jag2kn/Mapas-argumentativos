@@ -65,12 +65,12 @@
 			}
 		}
 		
-		function agregarCaja(tipo){
-			if (tipo==undefined){
-				tipo="premisa";
+		function agregarCaja(tipoDefecto){
+			if (tipoDefecto==undefined){
+				tipoDefecto="premisa";
 			}
 			$("#set").append(
-				'<div id="caja_'+contador+'" class="'+tipo+' box ui-widget-content">'+
+				'<div id="caja_'+contador+'" class="'+tipoDefecto+' box ui-widget-content">'+
 					'<div class="ui-widget-header ui-corner-all ui-helper-clearfix ui-dialog-titlebar t">'+
 						'<div id="ttitulo_'+contador+'" class="ttitulo">Titulo '+contador+'</div>'+
 						'<div id="propiedades_'+contador+'" class="botonPropiedades ui-state-default ui-corner-all"><span class="ui-icon ui-icon-pencil"></span></div>'+
@@ -87,7 +87,7 @@
 					'</div>'+
 					'<input type="hidden" name="padre_'+contador+'"  id="padre_'+contador+'" value="'+padre+'" /' +'>'+
 					'<input type="hidden" name="titulo_'+contador+'" id="titulo_'+contador+'" value="Titulo '+contador+'" /'+'>'+
-					'<input type="hidden" name="tipo_'+contador+'"  id="tipo_'+contador+'" value="'+tipo+'" /'+'>'+
+					'<input type="hidden" name="tipo_'+contador+'"  id="tipo_'+contador+'" value="'+tipoDefecto+'" /'+'>'+
 				'</div>'
 			);
 			
@@ -132,7 +132,7 @@
 					titulo.val($("#titulo_"+actual).val());
 					contenido.val($("#contenido_"+actual).text());
 					autor.val($("#autor_"+actual).val());
-				
+					tipo.val($("#tipo_"+actual).val());
 					$( "#propiedadesCaja" ).dialog( "open" );
 				}catch(aa){
 				}
@@ -214,7 +214,7 @@
 						
 						$("#caja_"+actual).removeClass("premisa razon objecion ayuda");
 						$("#caja_"+actual).addClass(tipo.val());
-						
+						calcularLineas();
 						$( this ).dialog( "close" );
 					}
 				},
